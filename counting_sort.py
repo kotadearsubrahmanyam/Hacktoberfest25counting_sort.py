@@ -9,7 +9,7 @@ def counting_sort(arr):
     for i in range(1, len(count)):
         count[i] += count[i - 1]
         
-    for i in range(len(arr)):  # ❌ Should go backward for stability
+    for i in range(len(arr) - 1, -1, -1):  # ✅ Go backwards for stability
         output[count[arr[i]] - 1] = arr[i]
         count[arr[i]] -= 1
         
@@ -17,4 +17,4 @@ def counting_sort(arr):
         arr[i] = output[i]
     return arr
 
-print(counting_sort([4, 2, 2, 8, 3, 3, 1]))  # Expected [1, 2, 2, 3, 3, 4, 8]
+print(counting_sort([4, 2, 2, 8, 3, 3, 1]))
